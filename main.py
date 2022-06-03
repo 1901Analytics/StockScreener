@@ -35,7 +35,7 @@ with st.form(key = 'StockQuery'):
             tickerDf.dropna(inplace=True)
 
 
-        query_submit = st.form_submit_button(label='Submit Stock Query')
+        query_submit = st.form_submit_button(label='Submit Stock Query', clean_on_submit=False)
 
 if query_submit:
     # Ticker information
