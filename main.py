@@ -14,7 +14,7 @@ djia_url = 'https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average'
 st.title('A Basic Stock Screener')
 
 # Sidebar
-with st.form(key = 'StockQuery'):
+with st.form(key = 'StockQuery', clear_on_submit = False):
     with st.sidebar:
         st.sidebar.subheader('Query parameters')
         stock_universe = st.sidebar.selectbox('Are you interested in the S&P 500 or the Dow Jones Industrial Average?',
@@ -35,7 +35,7 @@ with st.form(key = 'StockQuery'):
             tickerDf.dropna(inplace=True)
 
 
-        query_submit = st.form_submit_button(label='Submit Stock Query', clear_on_submit=False)
+        query_submit = st.form_submit_button(label='Submit Stock Query')
 
 if query_submit:
     # Ticker information
