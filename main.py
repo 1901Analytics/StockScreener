@@ -39,8 +39,7 @@ with st.form(key = 'StockQuery', clear_on_submit = False):
 
 if query_submit:
     # Ticker information
-    string_logo = '<img src=%s>' % tickerData.info['logo_url']
-    st.markdown(string_logo, unsafe_allow_html=True)
+    st.image(tickerData.info['logo_url'])
 
     string_name = tickerData.info['longName']
     st.header('**%s**' % string_name)
