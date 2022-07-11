@@ -11,7 +11,7 @@ sp500_url = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
 djia_url = 'https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average'
 
 
-st.title('A Basic Stock Screener')
+st.title('A Basic Stock Screener Demonstration in Streamlit')
 
 # Sidebar
 with st.form(key = 'StockQuery', clear_on_submit = False):
