@@ -67,6 +67,25 @@ if query_submit:
     fig2 = px.scatter(CAPM_data, x='SPY Rets', y='Stock Rets', trendline="ols")
     st.plotly_chart(fig2, use_container_width=True)
 
+    # None ideal practical setup, but good example of an animated visualization.
+
+    CAPM_data.reset_index(inplace=True)
+    CAPM_data['Date'] = CAPM_data['Date'].dt.date.astype(str)
+    SPY = CAPM_data[['SPY Rets', 'Date']]
+    SPY['name'] = 'SPY'
+    STOCK = CAPM_data[['Stock Rets', 'Date']]
+    STOCK['name'] = 'STOCK'
+    new_cols = ['returns', 'date', 'name']
+    SPY.columns = new_cols
+    STOCK.columns = new_cols
+    Animation = pd.concat([SPY, STOCK], ignore_index = True)
+
+    st.write(Animation)
+    fig3 = px.bar(Animation, y='returns', x='name', animation_frame='date', range_y=[-.05, .05])
+    fig3.layout.updatemenus[0].buttons[0].args[1]['frame']['duration'] = 25
+    fig3.layout.updatemenus[0].buttons[0].args[1]['transition']['duration'] = 5
+    st.plotly_chart(fig3, use_container_width=True)
+
     st.subheader('The 10 most recent analyst recommendations for ' + str(string_name))
     recos = tickerData.get_recommendations().drop(columns = ['From Grade', 'Action'])
     recos.dropna(inplace = True)
